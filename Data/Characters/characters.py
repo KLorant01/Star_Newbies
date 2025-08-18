@@ -15,6 +15,7 @@ class Character:
 
             "HP": 20,
             "Armore": 10
+            "Morale": 50
         }
 
         self.baseCharacteristics = {
@@ -42,6 +43,7 @@ class Character:
 
             "HP": 20,
             "Armore": 10
+            "Morale": 50
         }
 
         self.Characteristics = {
