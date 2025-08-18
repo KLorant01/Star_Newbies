@@ -1,8 +1,8 @@
 from icecream import ic
 import pygame as pg
-from data_.VARIABLES import SCREEN_RES
+from Data.VARIABLES import SCREEN_RES
 from Game_States.Main_Menu import Main_Menu, Main_Settings
-from data_.Enums import st
+from Data.Enums import st
 
 
 class Main:

@@ -1,7 +1,7 @@
 import pygame as pg
-from data_.VARIABLES import FPS
+from Data.VARIABLES import FPS
 from icecream import ic
-from data_.Enums import st
+from Data.Enums import st
 
 
 class Main_Menu:
@@ -12,11 +12,12 @@ class Main_Menu:
         self.screen = screen
         self.clock = clock
 
-        self.cursor: int == 0
+        self.cursor: int = 0
         self.CURSOR_MAX: int = 3    # New Game, Settings, Credits, EXIT
         
-        # LOAD data_
-        self.default_bg = pg.image.load("data_/Bgs/resolution_test_2.png").convert_alpha()
+        # LOAD Data
+        self.default_bg = pg.image.load("Data/Bgs/resolution_test_2.png").convert_alpha()
+        # TODO feliratok és kurzor
 
 
     def main(self):
@@ -26,12 +27,15 @@ class Main_Menu:
                 if event.type == pg.QUIT:
                     return st.EXIT
                 elif event.type == pg.KEYDOWN:
-                    if event.key == pg.K_w
+                    if event.key == pg.K_w:
                         self.cursor_up()
-                    elif event.key == pg.K_s
+                    elif event.key == pg.K_s:
                         self.cursor_down()
-                    elif event.key == pg.K_d
+                    elif event.key == pg.K_d:
                         return self.cursor_execute()
+
+
+            # TODO kurzor mozgatása
 
 
             self.game_surface.fill((0, 255, 0))
@@ -43,13 +47,17 @@ class Main_Menu:
             pg.display.flip()
             self.clock.tick(FPS)
 
+
     def cursor_up(self) -> None:
         if self.cursor > 0:
             self.cursor -= 1
+        ic(self.cursor)
+
 
     def cursor_down(self) -> None:
         if self.cursor < self.CURSOR_MAX:
             self.cursor += 1
+        ic(self.cursor)
 
 
     def cursor_execute(self) -> st:
@@ -74,8 +82,8 @@ class Main_Settings:
         self.screen = screen
         self.clock = clock
 
-        # LOAD data_
-        self.default_bg = pg.image.load("data_/Bgs/resolution_test_2.png").convert_alpha()
+        # LOAD Data
+        self.default_bg = pg.image.load("Data/Bgs/resolution_test_2.png").convert_alpha()
 
 
     def main(self):

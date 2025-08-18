@@ -1,4 +1,18 @@
-Valami
+        MENÜ
+===================
+Alapvetően egy ilyen arcade computer stílust szeretnék megfogni:
+    * A képernyő bal oldalán egymás alatt az apciók, ilyen mustársárga színnel (pl.: d5b27a, egy kicsit élénkebb lehet)
+    * A kurzor egy nyilacska ( > )
+    * A háttérben csillagok úsznak azt a hatást keltve, hogy haladunk előre
+    * A képernyő jobb oldalán kis űrhajó látható, mely haladni látszik az űrben, a mozgó csillagos háttér miatt
+    PL.:
+
+            NEW GAME              __-^-__
+          > SETTINGS             /   O   \
+            CREDITS             |   ___   |
+            EXIT                |__/   \__|
 
 
-alma
+
+
+
