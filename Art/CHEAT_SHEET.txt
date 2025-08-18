@@ -1,0 +1,28 @@
+MOZGÁS MAPPÁK KÖZÖTT
+
+ls:
+  (List) Kiírja az adott file tartalmát
+
+ls -al
+  Több információt nyújt a fájlokról, kiírja a rejtett elemeket is
+
+cd <mappa neve>
+  (change directory) lehetővé teszi a mozgást mappák között
+  pl.:
+    cd asd    Belépünk az "asd" nevű mappába
+    cd ..     Feljebb lépünk egy mappával
+    cd        Autómatikusan a HOME mappába kerülünk
+
+
+FÁJLOK SZERKESZTÉSE 
+
+vim <fájl neve>
+  A vim egy hatékony szövegszerkesztő program
+
+  mozgás: a hjkl billentyükkel
+  módok:
+    A vim-ben 3 móddal érdemes foglalkozni:
+
+
+
+Git használata
