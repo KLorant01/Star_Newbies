@@ -1,6 +1,6 @@
 from enum import Enum
 
-
+# MAIN STATE ENUM
 class st(Enum):
     MAIN_MENU = 1
     MENU_SETTINGS = 12

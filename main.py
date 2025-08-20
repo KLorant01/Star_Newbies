@@ -2,6 +2,7 @@ from icecream import ic
 import pygame as pg
 from Data.VARIABLES import SCREEN_RES
 from Game_States.Main_Menu import Main_Menu, Main_Settings
+from Game_States.Game_Loop import Game_Loop
 from Data.Enums import st
 
 
@@ -34,6 +35,7 @@ class Main:
 
                 case st.GAME_LOOP:
                     ic("GAME_LOOP")
+                    state = Game_Loop(self.game_surface, self.screen, self.clock, self.screenWidth, self.screenHeight).loop()
 
                 case st.GAME_SETTINGS:
                     ic("GAME_SETTINGS")

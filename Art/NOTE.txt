@@ -1,7 +1,6 @@
         MENÜ
 ===================
-Alapvetően egy ilyen arcade computer stílust szeretnék megfogni:
-    * A képernyő bal oldalán egymás alatt az apciók, ilyen mustársárga színnel (pl.: d5b27a, egy kicsit élénkebb lehet)
+    * A képernyő bal oldalán egymás alatt az apciók, sárgás színnel
     * A kurzor egy nyilacska ( > )
     * A háttérben csillagok úsznak azt a hatást keltve, hogy haladunk előre
     * A képernyő jobb oldalán kis űrhajó látható, mely haladni látszik az űrben, a mozgó csillagos háttér miatt
@@ -13,6 +12,15 @@ Alapvetően egy ilyen arcade computer stílust szeretnék megfogni:
             EXIT                |__/   \__|
 
 
+     ARTSTYLE
+===================
+Alapvetően egy ilyen arcade computer stílust szeretnék megfogni.
+A szövegek monospace fonttal lennének írva sárgás színnel. Szerintem a d5b27a megfelelő, bár egy kicsit élénkebb lehet
+Minimalista UI-t szeretnék megvalósítani, minnél kevesebb zavaró elemmel
 
+Ha egy karakter beszél, akkor a képernyő alján egy dedikált szövegdobozban gondoltam ezt, a portréja legyen bal oldalon, és őmaga is nézzen balra. PL.:
 
-
+    +--------+----------------------------------------+
+    | PORTRÉ |    A REMÉLHETŐLEG NEM UNCSI SZÖVEG     |
+    |        |                                        |
+    +--------+----------------------------------------+
