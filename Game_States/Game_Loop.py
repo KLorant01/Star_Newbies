@@ -1,7 +1,7 @@
 import pygame as pg
 from Data.VARIABLES import FPS
 from icecream import ic
-from Data.Enums import st
+from Data.Enums import main_st, game_st
 
 
 
@@ -13,19 +13,24 @@ class Game_Loop:
         self.screen = screen
         self.clock = clock
 
+        self.game_state = game_st.MAIN_SCREEN
+
         # LOAD Data
         # TODO change
         self.default_bg = pg.image.load("Data/Bgs/resolution_test_2.png").convert_alpha()
 
 
     def loop(self):
+
         while 1:
 
             for event in pg.event.get():
                 if event.type == pg.QUIT:
-                    return st.MAIN_MENU
+                    return main_st.MAIN_MENU
                 elif event.type == pg.KEYDOWN:
                    ...
+
+
 
 
             self.game_surface.fill((0, 0, 255))

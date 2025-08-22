@@ -1,7 +1,7 @@
 import pygame as pg
 from Data.VARIABLES import FPS, VELOCITYS, SCREEN_RES
 from icecream import ic
-from Data.Enums import st
+from Data.Enums import main_st
 
 
 class Main_Menu:
@@ -37,19 +37,21 @@ class Main_Menu:
         bgPositions: list[float] = [0,0,0,0,0,0]
         cursorPos_y: list[int] = [0,26,52]
         MAX_DIFF: int = 1080
+        clearScreen: bool = False
 
         while 1:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
-                     return st.EXIT
+                     return main_st.EXIT
                 elif event.type == pg.KEYDOWN:
-                    if event.key == pg.K_w:
+                    if event.key == pg.K_w or event.key == pg.K_UP:
                         self.cursor_up()
-                    elif event.key == pg.K_s:
+                    elif event.key == pg.K_s or event.key == pg.K_DOWN:
                         self.cursor_down()
-                    elif event.key == pg.K_d:
-                        ret = self.cursor_execute()
-                        return ret
+                    elif event.key == pg.K_d or event.key == pg.K_RETURN or event.key == pg.K_RIGHT:
+                        return self.cursor_execute()
+                    elif event.key == pg.K_h:
+                        clearScreen = not clearScreen
 
 
             # MOVING BACKGROUND
@@ -74,13 +76,11 @@ class Main_Menu:
                     bgPositions[i] = 0
 
             # TEXTS and CURSOR
-            self.game_surface.blit(self.CursorPic, (0, cursorPos_y[self.cursor]))
-            self.game_surface.blit(self.CreditsPic, (0,0))
-            self.game_surface.blit(self.NewGamePic, (0,0))
-            self.game_surface.blit(self.SettingsPic, (0,0))
-
-
-
+            if not clearScreen:
+                self.game_surface.blit(self.CursorPic, (0, cursorPos_y[self.cursor]))
+                self.game_surface.blit(self.CreditsPic, (0,0))
+                self.game_surface.blit(self.NewGamePic, (0,0))
+                self.game_surface.blit(self.SettingsPic, (0,0))
 
 
             # Screen work
@@ -106,14 +106,14 @@ class Main_Menu:
         ic()
         match self.cursor:
             case 0:
-                return st.GAME_LOOP
+                return main_st.GAME_LOOP
             case 1:
-                return st.MENU_SETTINGS
+                return main_st.MENU_SETTINGS
             case 2:
                 # TODO make a credits sceen
-                return st.MAIN_MENU
+                return main_st.MAIN_MENU
             case 3:
-                return st.EXIT
+                return main_st.EXIT
             case _:
                 raise Exception
 
@@ -135,11 +135,11 @@ class Main_Settings:
 
             for event in pg.event.get():
                 if event.type == pg.QUIT:
-                    return st.EXIT
+                    return main_st.EXIT
                 elif event.type == pg.KEYDOWN:
-                    if event.key == pg.K_q:
+                    if event.key == pg.K_q or event.key == pg.K_ESCAPE:
                         ic("Q is pressed")
-                        return st.MAIN_MENU
+                        return main_st.MAIN_MENU
 
             self.game_surface.fill((255, 0, 0))
             self.game_surface.blit(self.default_bg, (0, 0))
