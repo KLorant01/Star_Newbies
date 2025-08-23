@@ -1,7 +1,7 @@
 import pygame as pg
-from Data.VARIABLES import FPS
+from Resources.Data.VARIABLES import FPS
 from icecream import ic
-from Data.Enums import main_st, game_st
+from Resources.Data.Enums import MainSt, GameSt
 
 class Button:
     def __init__(self, name: str, x_min, x_max, y_min, y_max):
@@ -10,43 +10,43 @@ class Button:
         self.x_max = x_max
         self.y_min = y_min
         self.y_max = y_max
-1
+
         self.hower: bool = False
 
-    def action(self, cursorPosX, cursorPosY, pressed: int) -> bool:
+    def action(self, cursorposx, cursorposy, pressed: int) -> bool:
         self.hower = False
-        if not (self.x_min < cursorPosX < self.x_max):
+        if not (self.x_min < cursorposx < self.x_max):
             return False
-        if not (self.y_min < cursorPosY< self.y_max):
+        if not (self.y_min < cursorposy < self.y_max):
             return False
 
         if pressed == 1:
             self.hower = False
-            self.actionOnPush()
+            self.action_on_push()
         else:
             self.hower = True
-            self.actionOnHover()
+            self.action_on_hover()
         return True
 
 
-    def actionOnHover(self):
+    def action_on_hover(self):
         ic(f"Button: {self.name} howerd")
 
 
-    def actionOnPush(self):
+    def action_on_push(self):
         ic(f"Button: {self.name} pushed")
 
 
 
-class Game_Loop:
-    def __init__(self, game_surface, screen, clock, screenWidth, screenHeight):
+class GameLoop:
+    def __init__(self, game_surface, screen, clock, screenwidth, screenweight):
         self.game_surface = game_surface
-        self.screenWidth = screenWidth
-        self.screenHeight = screenHeight
+        self.screenWidth = screenwidth
+        self.screenHeight = screenweight
         self.screen = screen
         self.clock = clock
 
-        self.game_state = game_st.MAIN_SCREEN
+        self.game_state = GameSt.MAIN_SCREEN
 
 
         # TODO: finomhangold
@@ -56,12 +56,11 @@ class Game_Loop:
             Button("Right Upper Corner", 860, 950, 0, 90),
             Button("Right Bottom Corner", 860, 950, 1022, 960),
             Button("Ship in the Middle", 280, 830, 0, 1022),
-
         ]
 
-        # LOAD Data
+        # LOAD Resources
         # TODO change
-        self.default_bg = pg.image.load("Data/Bgs/resolution_test_2.png").convert_alpha()
+        self.default_bg = pg.image.load("Resources/Sprites/Bgs/resolution_test_2.png").convert_alpha()
 
 
     def loop(self):
@@ -69,14 +68,14 @@ class Game_Loop:
 
             for event in pg.event.get():
                 if event.type == pg.QUIT:
-                    return main_st.MAIN_MENU
+                    return MainSt.MAIN_MENU
                 elif event.type == pg.KEYDOWN:
                    ...
                 elif event.type == pg.MOUSEMOTION:
-                    self.MousHandler(event)
+                    self.maus_handler(event)
 
                 elif event.type == pg.MOUSEBUTTONDOWN:
-                    self.MousHandler(event, event.button)
+                    self.maus_handler(event, event.button)
 
 
 
@@ -90,7 +89,7 @@ class Game_Loop:
             pg.display.flip()
             self.clock.tick(FPS)
 
-    def MousHandler(self, event, push: int = 0):
+    def maus_handler(self, event, push: int = 0):
         pos = event.pos
         cursorPosX, cursorPosY = pos[0], pos[1]
         print(cursorPosX)
