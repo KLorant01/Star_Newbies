@@ -1,6 +1,6 @@
 from Resources.Data.VARIABLES import SCREEN_RES
-from Game.MainMenu import MainMenu, MainSettings
-from Game.GameLoop import GameLoop
+from Game.Main_Menu import MainMenu, MainSettings
+from Game.Game_Loop import GameLoop
 from Resources.Data.Enums import MainSt
 from icecream import ic
 import pygame as pg

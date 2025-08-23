@@ -16,7 +16,7 @@ class MainMenu:
         self.CURSOR_MAX: int = 2    # New Game, Settings, Credits, EXIT
         
         # LOAD Resources
-        root: str = "Resources/Sprites/Bgs/Main_Menu_bgs/"
+        root: str = "Resources/Sprites/Bgs/Space_bg/"
         self.Csillagok_1 =      pg.image.load(f"{root}Csillagok_1.png").convert_alpha()
         self.Csillagok_2 =      pg.image.load(f"{root}Csillagok_2.png").convert_alpha()
         self.Bolygok_1 =        pg.image.load(f"{root}Bolygók_1.png").convert_alpha()
@@ -49,7 +49,8 @@ class MainMenu:
                     elif event.key == pg.K_s or event.key == pg.K_DOWN:
                         self.cursor_down()
                     elif event.key == pg.K_d or event.key == pg.K_RETURN or event.key == pg.K_RIGHT:
-                        return self.cursor_execute
+                        ic("aaaaaaaaaaaaaaaaa")
+                        return self.cursor_execute()
                     elif event.key == pg.K_h:
                         clearScreen = not clearScreen
 
@@ -106,13 +107,17 @@ class MainMenu:
     def cursor_execute(self):
         match self.cursor:
             case 0:
+                ic()
                 return MainSt.GAME_LOOP
             case 1:
+                ic()
                 return MainSt.MENU_SETTINGS
             case 2:
+                ic()
                 # TODO make a credits screen
                 return MainSt.MAIN_MENU
             case 3:
+                ic()
                 return MainSt.EXIT
             case _:
                 raise Exception
@@ -130,7 +135,7 @@ class MainSettings:
         self.default_bg = pg.image.load("Resources/Sprites/Bgs/resolution_test_2.png").convert_alpha()
 
         # LOAD Resources
-        root: str = "Resources/Sprites/Bgs/Main_Menu_bgs/"
+        root: str = "Resources/Sprites/Bgs/Space_bg/"
         self.Csillagok_1 =      pg.image.load(f"{root}Csillagok_1.png").convert_alpha()
         self.Csillagok_2 =      pg.image.load(f"{root}Csillagok_2.png").convert_alpha()
         self.Bolygok_1 =        pg.image.load(f"{root}Bolygók_1.png").convert_alpha()
@@ -139,7 +144,7 @@ class MainSettings:
         self.Bolygok_2 =        pg.image.load(f"{root}Bolygók_2.png").convert_alpha()
         self.Background =       pg.image.load(f"{root}Background.png").convert_alpha()
 
-        root = "Resources/Sprites/Objects/MainSettings/"
+        root = "Resources/Sprites/Objects/Main_Settings/"
         self.placeholder =      pg.image.load(f"{root}Menu_Settings_Placeholder.png").convert_alpha()
 
 
