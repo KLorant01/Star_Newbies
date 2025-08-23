@@ -46,8 +46,10 @@ FELTÖLTÉS:
         Innetől kezdve azok szükség esetén visszaállíthatóak
 
 (1+2) git commit -a -m "az üzeneted"
-        Olyan mintha az első két lépést egymás után megcsináltad volna. FIGYELEM! Ha rejtett file-t akarsz 
-        feltölteni, (.valami) akkor ez a command valamiért ignorálja...
+        Olyan mintha az első két lépést egymás után megcsináltad volna. FIGYELEM!
+        FIGYELEM !!! 
+        Csak akkor használd, ha csak változtatásokat hajtottál végre. Ez az új file-okat figyelmenkívül hagyja.
+
 
   3. git push 
         Feltölti a vltoztatásokat a felhőbe, githubra.
