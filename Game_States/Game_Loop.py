@@ -10,7 +10,7 @@ class Button:
         self.x_max = x_max
         self.y_min = y_min
         self.y_max = y_max
-
+1
         self.hower: bool = False
 
     def action(self, cursorPosX, cursorPosY, pressed: int) -> bool:

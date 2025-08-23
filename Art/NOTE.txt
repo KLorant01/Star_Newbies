@@ -24,3 +24,16 @@ Ha egy karakter beszél, akkor a képernyő alján egy dedikált szövegdobozban
     | PORTRÉ |    A REMÉLHETŐLEG NEM UNCSI SZÖVEG     |
     |        |                                        |
     +--------+----------------------------------------+
+
+56x56
+
+
+
+Kis portré harcnél: 21x21
+
+Harc:
+  Gugoló: 40x50
+  Álló: 40x70
+
+
+
