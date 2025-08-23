@@ -129,8 +129,25 @@ class Main_Settings:
         # LOAD Data
         self.default_bg = pg.image.load("Data/Bgs/resolution_test_2.png").convert_alpha()
 
+        # LOAD Data
+        root: str = "Data/Bgs/Main_Menu_bgs/"
+        self.Csillagok_1 =      pg.image.load(f"{root}Csillagok_1.png").convert_alpha()
+        self.Csillagok_2 =      pg.image.load(f"{root}Csillagok_2.png").convert_alpha()
+        self.Bolygók_1 =        pg.image.load(f"{root}Bolygók_1.png").convert_alpha()
+        self.Ködök =            pg.image.load(f"{root}Ködök.png").convert_alpha()
+        self.Csillagok_3 =      pg.image.load(f"{root}Csillagok_3.png").convert_alpha()
+        self.Bolygók_2 =        pg.image.load(f"{root}Bolygók_2.png").convert_alpha()
+        self.Background =       pg.image.load(f"{root}Background.png").convert_alpha()
+
+        root = "Data/Objects/Main_Settings/"
+        self.placeholder =      pg.image.load(f"{root}Menu_Settings_Placeholder.png").convert_alpha()
+
+
 
     def main(self):
+        bgPositions: list[float] = [0,0,0,0,0,0]
+        MAX_DIFF: int = 1080
+
         while 1:
 
             for event in pg.event.get():
@@ -141,8 +158,31 @@ class Main_Settings:
                         ic("Q is pressed")
                         return main_st.MAIN_MENU
 
-            self.game_surface.fill((255, 0, 0))
-            self.game_surface.blit(self.default_bg, (0, 0))
+
+            # MOVING BACKGROUND
+            self.game_surface.blit(self.Background,     (0, 0))
+            self.game_surface.blit(self.Bolygók_2,      (0, bgPositions[5]))
+            self.game_surface.blit(self.Bolygók_2,      (0, bgPositions[5] + MAX_DIFF))
+            self.game_surface.blit(self.Csillagok_3,    (0, bgPositions[4]))
+            self.game_surface.blit(self.Csillagok_3,    (0, bgPositions[4] + MAX_DIFF))
+            self.game_surface.blit(self.Ködök,          (0, bgPositions[3]))
+            self.game_surface.blit(self.Ködök,          (0, bgPositions[3] + MAX_DIFF))
+            self.game_surface.blit(self.Bolygók_1,      (0, bgPositions[2]))
+            self.game_surface.blit(self.Bolygók_1,      (0, bgPositions[2] + MAX_DIFF))
+            self.game_surface.blit(self.Csillagok_2,    (0, bgPositions[1]))
+            self.game_surface.blit(self.Csillagok_2,    (0, bgPositions[1] + MAX_DIFF))
+            self.game_surface.blit(self.Csillagok_1,    (0, bgPositions[0]))
+            self.game_surface.blit(self.Csillagok_1,    (0, bgPositions[0] + MAX_DIFF))
+
+            # Adjust positions
+            for i in range(len(bgPositions)):
+                bgPositions[i] -= VELOCITYS[i]
+                if bgPositions[i] < -MAX_DIFF:
+                    bgPositions[i] = 0
+
+            # PLACEHOLDER
+            self.game_surface.blit(self.placeholder,    (0, 0))
+
 
             scaled_surface = pg.transform.scale(self.game_surface, (self.screenWidth, self.screenHeight))
             self.screen.blit(scaled_surface, (0, 0))

@@ -1,6 +1,6 @@
 MOZGÁS MAPPÁK KÖZÖTT
 
-ls:
+ls
   (List) Kiírja az adott file tartalmát
 
 ls -al
@@ -17,12 +17,49 @@ cd <mappa neve>
 FÁJLOK SZERKESZTÉSE 
 
 vim <fájl neve>
-  A vim egy hatékony szövegszerkesztő program
+  A vim egy hatékony és menő szövegszerkesztő program.
+  
+  Ha te is a top 1%-ba akarsz tartozni, tehát a vim userek közé, 
+  akkor kérd Lórántot kurzusért.
 
-  mozgás: a hjkl billentyükkel
-  módok:
-    A vim-ben 3 móddal érdemes foglalkozni:
+GIT HASZNÁLATA
+  
+  A GitWorkflow-3 kép segít megérteni a git működését.
+
+
+A számunkra fontos parancsok:
+
+git status
+  Megmutatja a végzett változtatásokat, illetve hogy a main branch-hez képest le vagy e maradva, vagy elötte jársz. 
+  Kiírja még az aktív branch-et, de nekünk ez egyenlőre nem lényeges. 
+
+    A main branch az az "ág", amely online van fenn github-on. Mint a rendes ág, ő is növekszik, mindig amikor új 
+    változtatásokat töltunk fel. Ha egy ideig nem csinálsz git push-t, akkor "előrébb fogsz tartani", mint a main branch.
+
+FELTÖLTÉS:
+
+  1.  git add . 
+        Staging állaptba teszi az ÖSSZES szerkesztett file-t.
+
+  2.  git commit -m "az üzeneted"
+        A stageing állapotban lévő változtatásokat menti lokálisan. A változtatások bekerülnek a commit historyba. 
+        Innetől kezdve azok szükség esetén visszaállíthatóak
+
+(1+2) git commit -a -m "az üzeneted"
+        Olyan mintha az első két lépést egymás után megcsináltad volna. FIGYELEM! Ha rejtett file-t akarsz 
+        feltölteni, (.valami) akkor ez a command valamiért ignorálja...
+
+  3. git push 
+        Feltölti a vltoztatásokat a felhőbe, githubra.
+        Ha hibát ad vissza, akkor általában az a gond, hogy github-on van olyan munka, amit a te lokális commit-ed nem tartalmaz.
+        Ekkor egy <git pull> meg szokta oldani a dolgokat.
+
+LETÖLTÉS:
+
+  1.  git pull
+        Ennyi.
 
 
 
-Git használata
+
+
