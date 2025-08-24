@@ -15,24 +15,6 @@ class GameLoop:
         self.screen = screen
         self.clock = clock
 
-        self.game_state = GameSt.MAIN_SCREEN
-
-        self.buttons = [
-            Button("Star_System",       7,      622,    5,      64),
-            Button("Time",              7,      263,    78,     135),
-            Button("Mission_State",     7,      950,    150,    253),
-
-            Button("Character_1",       7,      130,    282,    402),
-            Button("Character_2",       7,      130,    412,    536),
-            Button("Character_3",       7,      130,    546,    666),
-            Button("Character_4",       7,      130,    676,    801),
-
-            Button("Cargo",             280,    830,    0,      1022),
-            Button("Database",          7,      275,    0,      930),
-            Button("Settings",          1850,   1910,   11,     72),
-
-            Button("Ship in the Middle", 865,   1440,     105,  930),
-        ]
 
         # LOAD Resources
         root: str = "Resources/Sprites/Bgs/Space_bg/"
@@ -44,29 +26,17 @@ class GameLoop:
         self.Bolygok_2 =        pg.image.load(f"{root}Bolygók_2.png").convert_alpha()
         self.Background =       pg.image.load(f"{root}Background.png").convert_alpha()
 
-        # TODO change
-        self.default_bg = pg.image.load("Resources/Sprites/Game/Test/Game_layout_test.png").convert_alpha()
-
 
     def loop(self):
 
         bgPositions: list[float] = [0,0,0,0,0,0]
         MAX_DIFF: int = 1080
+        game_state = GameSt.MAIN_SCREEN
 
         while 1:
-
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    return MainSt.MAIN_MENU
-
-                elif event.type == pg.KEYDOWN:
-                    self.key_handler()
-
-                elif event.type == pg.MOUSEMOTION:
-                    self.maus_handler(event)
-
-                elif event.type == pg.MOUSEBUTTONDOWN:
-                    self.maus_handler(event, event.button)
+            match game_state:
+                case GameSt.MAIN_SCREEN:
+                    game_state =
 
 
             # MOVING BACKGROUND
@@ -97,15 +67,4 @@ class GameLoop:
             self.screen.blit(scaled_surface, (0, 0))
             pg.display.flip()
             self.clock.tick(FPS)
-
-    def maus_handler(self, event, push: int = 0):
-        pos = event.pos
-        cursorPosX, cursorPosY = pos[0], pos[1]
-        for button in self.buttons:
-            if button.action(cursorPosX, cursorPosY, push):
-                break
-
-    def key_handler(self, event):
-        match event.key:
-            case pg.K_q
 

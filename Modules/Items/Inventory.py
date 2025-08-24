@@ -5,12 +5,14 @@ class Invetory():
         self.storage: dict[Item:int] = {}
         self.weight: int = 0
 
+
     def add(self, item: Item, quantity: int) -> None:
         if item in self.storage:
             self.storage[item] += quantity
         else:
             self.storage.update({item : quantity})
         return
+
 
     def rem(self, item: Item, quantity: int) -> True | False:
         if item not in self.storage:

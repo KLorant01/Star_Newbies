@@ -1,12 +1,14 @@
-# from icecream import ic
+import logging as lg
 
 class Button:
-    def __init__(self, name: str, x_min, x_max, y_min, y_max):
+    def __init__(self, name: str, x_min, x_max, y_min, y_max) -> None:
         self.name = name
         self.x_min = x_min
         self.x_max = x_max
         self.y_min = y_min
         self.y_max = y_max
+
+        lg.info(f"Button: {self.name} created")
 
         self.hover: bool = False
 
@@ -27,8 +29,8 @@ class Button:
 
 
     def action_on_hover(self):
-        ...
+        lg.debug(f"Button: {self.name} hover")
 
 
     def action_on_push(self):
-        ...
+        lg.info(f"Button: {self.name} pressed")
