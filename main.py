@@ -1,5 +1,6 @@
 from Resources.Data.VARIABLES import SCREEN_RES
-from Game.Main_Menu import MainMenu, MainSettings
+from Game.Main_Menu import MainMenu
+from Game.Main_Settings import MainSettings
 from Game.Game_Loop import GameLoop
 from Resources.Data.Enums import MainSt
 import pygame as pg
@@ -50,7 +51,9 @@ class Main:
 
 
 if __name__ == '__main__':
-    lg.basicConfig(level=lg.DEBUG, filename="log.log", filemode="w",
+
+    # noinspection SpellCheckingInspection
+    lg.basicConfig(level=lg.INFO, filename=".log.log", filemode="w",
                         format="%(asctime)s\t%(levelname)s\t%(filename)s\t%(funcName)s\t%(lineno)d\t%(message)s", )
 
     game = Main()

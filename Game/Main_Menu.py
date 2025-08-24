@@ -14,6 +14,9 @@ class MainMenu:
 
         self.cursor: int = 0
         self.CURSOR_MAX: int = 2    # New Game, Settings, Credits, EXIT
+
+        # MOVING BACKGROUND
+        self.bgPositions: list[float] = [0,0,0,0,0,0]
         
         # LOAD Resources
         root: str = "Resources/Sprites/Bgs/Space_bg/"
@@ -33,10 +36,7 @@ class MainMenu:
 
 
     def main(self):
-
-        bgPositions: list[float] = [0,0,0,0,0,0]
         cursorPos_y: list[int] = [0,26,52]
-        MAX_DIFF: int = 1080
         clearScreen: bool = False
 
         while 1:
@@ -54,41 +54,14 @@ class MainMenu:
                     elif event.key == pg.K_h:
                         clearScreen = not clearScreen
 
-
-            # MOVING BACKGROUND
-            self.game_surface.blit(self.Background,     (0, 0))
-            self.game_surface.blit(self.Bolygok_2,      (0, bgPositions[5]))
-            self.game_surface.blit(self.Bolygok_2,      (0, bgPositions[5] + MAX_DIFF))
-            self.game_surface.blit(self.Csillagok_3,    (0, bgPositions[4]))
-            self.game_surface.blit(self.Csillagok_3,    (0, bgPositions[4] + MAX_DIFF))
-            self.game_surface.blit(self.Kodok,          (0, bgPositions[3]))
-            self.game_surface.blit(self.Kodok,          (0, bgPositions[3] + MAX_DIFF))
-            self.game_surface.blit(self.Bolygok_1,      (0, bgPositions[2]))
-            self.game_surface.blit(self.Bolygok_1,      (0, bgPositions[2] + MAX_DIFF))
-            self.game_surface.blit(self.Csillagok_2,    (0, bgPositions[1]))
-            self.game_surface.blit(self.Csillagok_2,    (0, bgPositions[1] + MAX_DIFF))
-            self.game_surface.blit(self.Csillagok_1,    (0, bgPositions[0]))
-            self.game_surface.blit(self.Csillagok_1,    (0, bgPositions[0] + MAX_DIFF))
-
-            # Adjust positions
-            for i in range(len(bgPositions)):
-                bgPositions[i] -= VELOCITYS[i]
-                if bgPositions[i] < -MAX_DIFF:
-                    bgPositions[i] = 0
-
-            # TEXTS and CURSOR
-            if not clearScreen:
+            self.draw_bg()
+            if not clearScreen:     # TEXTS and CURSOR
                 self.game_surface.blit(self.CursorPic,      (0, cursorPos_y[self.cursor]))
                 self.game_surface.blit(self.CreditsPic,     (0,0))
                 self.game_surface.blit(self.NewGamePic,     (0,0))
                 self.game_surface.blit(self.SettingsPic,    (0,0))
 
-
-            # Screen work
-            scaled_surface = pg.transform.scale(self.game_surface, (self.screenWidth, self.screenHeight))
-            self.screen.blit(scaled_surface, (0, 0))
-            pg.display.flip()
-            self.clock.tick(FPS)
+            self.update_screen()
 
 
     def cursor_up(self) -> None:
@@ -123,3 +96,32 @@ class MainMenu:
                 lg.critical("Cursor invalid value?")
                 raise Exception
 
+
+    def draw_bg(self):
+        MAX_DIFF: int = 1080
+
+        self.game_surface.blit(self.Background, (0, 0))
+        self.game_surface.blit(self.Bolygok_2, (0, self.bgPositions[5]))
+        self.game_surface.blit(self.Bolygok_2, (0, self.bgPositions[5] + MAX_DIFF))
+        self.game_surface.blit(self.Csillagok_3, (0, self.bgPositions[4]))
+        self.game_surface.blit(self.Csillagok_3, (0, self.bgPositions[4] + MAX_DIFF))
+        self.game_surface.blit(self.Kodok, (0, self.bgPositions[3]))
+        self.game_surface.blit(self.Kodok, (0, self.bgPositions[3] + MAX_DIFF))
+        self.game_surface.blit(self.Bolygok_1, (0, self.bgPositions[2]))
+        self.game_surface.blit(self.Bolygok_1, (0, self.bgPositions[2] + MAX_DIFF))
+        self.game_surface.blit(self.Csillagok_2, (0, self.bgPositions[1]))
+        self.game_surface.blit(self.Csillagok_2, (0, self.bgPositions[1] + MAX_DIFF))
+        self.game_surface.blit(self.Csillagok_1, (0, self.bgPositions[0]))
+        self.game_surface.blit(self.Csillagok_1, (0, self.bgPositions[0] + MAX_DIFF))
+
+        # Adjust positions
+        for i in range(len(self.bgPositions)):
+            self.bgPositions[i] -= VELOCITYS[i]
+            if self.bgPositions[i] < -MAX_DIFF:
+                self.bgPositions[i] = 0
+
+    def update_screen(self):
+        scaled_surface = pg.transform.scale(self.game_surface, (self.screenWidth, self.screenHeight))
+        self.screen.blit(scaled_surface, (0, 0))
+        pg.display.flip()
+        self.clock.tick(FPS)

@@ -1,7 +1,7 @@
 import pygame as pg
 from Resources.Data.VARIABLES import FPS, VELOCITYS
 from Resources.Data.Enums import MainSt
-import logging as lg
+# import logging as lg
 
 
 class MainSettings:
@@ -12,8 +12,7 @@ class MainSettings:
         self.screen = screen
         self.clock = clock
 
-        # LOAD Resources
-        self.default_bg = pg.image.load("Resources/Sprites/Bgs/resolution_test_2.png").convert_alpha()
+        self.bgPositions: list[float] = [0,0,0,0,0,0]               # MOVING BACKGROUND
 
         # LOAD Resources
         root: str = "Resources/Sprites/Bgs/Space_bg/"
@@ -30,9 +29,6 @@ class MainSettings:
 
 
     def main(self):
-        bgPositions: list[float] = [0,0,0,0,0,0]
-        MAX_DIFF: int = 1080
-
         while 1:
 
             for event in pg.event.get():
@@ -43,32 +39,38 @@ class MainSettings:
                     if event.key == pg.K_q or event.key == pg.K_ESCAPE:
                         return MainSt.MAIN_MENU
 
-
-            # MOVING BACKGROUND
-            self.game_surface.blit(self.Background,     (0, 0))
-            self.game_surface.blit(self.Bolygok_2,      (0, bgPositions[5]))
-            self.game_surface.blit(self.Bolygok_2,      (0, bgPositions[5] + MAX_DIFF))
-            self.game_surface.blit(self.Csillagok_3,    (0, bgPositions[4]))
-            self.game_surface.blit(self.Csillagok_3,    (0, bgPositions[4] + MAX_DIFF))
-            self.game_surface.blit(self.Kodok,          (0, bgPositions[3]))
-            self.game_surface.blit(self.Kodok,          (0, bgPositions[3] + MAX_DIFF))
-            self.game_surface.blit(self.Bolygok_1,      (0, bgPositions[2]))
-            self.game_surface.blit(self.Bolygok_1,      (0, bgPositions[2] + MAX_DIFF))
-            self.game_surface.blit(self.Csillagok_2,    (0, bgPositions[1]))
-            self.game_surface.blit(self.Csillagok_2,    (0, bgPositions[1] + MAX_DIFF))
-            self.game_surface.blit(self.Csillagok_1,    (0, bgPositions[0]))
-            self.game_surface.blit(self.Csillagok_1,    (0, bgPositions[0] + MAX_DIFF))
-
-            # Adjust positions
-            for i in range(len(bgPositions)):
-                bgPositions[i] -= VELOCITYS[i]
-                if bgPositions[i] < -MAX_DIFF:
-                    bgPositions[i] = 0
-
-            # PLACEHOLDER
+            self.draw_bg()
             self.game_surface.blit(self.placeholder,    (0, 0))
 
-            scaled_surface = pg.transform.scale(self.game_surface, (self.screenWidth, self.screenHeight))
-            self.screen.blit(scaled_surface, (0, 0))
-            pg.display.flip()
-            self.clock.tick(FPS)
+            self.update_screen()
+
+
+    def draw_bg(self):
+        MAX_DIFF: int = 1080
+
+        self.game_surface.blit(self.Background,     (0, 0))
+        self.game_surface.blit(self.Bolygok_2,      (0, self.bgPositions[5]))
+        self.game_surface.blit(self.Bolygok_2,      (0, self.bgPositions[5] + MAX_DIFF))
+        self.game_surface.blit(self.Csillagok_3,    (0, self.bgPositions[4]))
+        self.game_surface.blit(self.Csillagok_3,    (0, self.bgPositions[4] + MAX_DIFF))
+        self.game_surface.blit(self.Kodok,          (0, self.bgPositions[3]))
+        self.game_surface.blit(self.Kodok,          (0, self.bgPositions[3] + MAX_DIFF))
+        self.game_surface.blit(self.Bolygok_1,      (0, self.bgPositions[2]))
+        self.game_surface.blit(self.Bolygok_1,      (0, self.bgPositions[2] + MAX_DIFF))
+        self.game_surface.blit(self.Csillagok_2,    (0, self.bgPositions[1]))
+        self.game_surface.blit(self.Csillagok_2,    (0, self.bgPositions[1] + MAX_DIFF))
+        self.game_surface.blit(self.Csillagok_1,    (0, self.bgPositions[0]))
+        self.game_surface.blit(self.Csillagok_1,    (0, self.bgPositions[0] + MAX_DIFF))
+
+        # Adjust positions
+        for i in range(len(self.bgPositions)):
+            self.bgPositions[i] -= VELOCITYS[i]
+            if self.bgPositions[i] < -MAX_DIFF:
+                self.bgPositions[i] = 0
+
+
+    def update_screen(self):
+        scaled_surface = pg.transform.scale(self.game_surface, (self.screenWidth, self.screenHeight))
+        self.screen.blit(scaled_surface, (0, 0))
+        pg.display.flip()
+        self.clock.tick(FPS)
