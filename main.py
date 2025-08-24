@@ -43,6 +43,10 @@ class Main:
                     state = GameLoop(self.game_surface, self.screen, self.clock, self.screenWidth,
                                      self.screenHeight).loop()
 
+                case MainSt.CREDITS:
+                    lg.info("CREDITS")
+                    raise NotImplementedError("Function Credits is not implemented yet")
+
                 case MainSt.EXIT:
                     lg.info("EXIT")
                     running = False

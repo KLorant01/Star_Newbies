@@ -13,7 +13,7 @@ class MainMenu:
         self.clock = clock
 
         self.cursor: int = 0
-        self.CURSOR_MAX: int = 2    # New Game, Settings, Credits, EXIT
+        self.CURSOR_MAX: int = 3    # New Game, Settings, Credits, EXIT
 
         # MOVING BACKGROUND
         self.bgPositions: list[float] = [0,0,0,0,0,0]
@@ -26,17 +26,18 @@ class MainMenu:
         self.Kodok =            pg.image.load(f"{root}Ködök.png").convert_alpha()
         self.Csillagok_3 =      pg.image.load(f"{root}Csillagok_3.png").convert_alpha()
         self.Bolygok_2 =        pg.image.load(f"{root}Bolygók_2.png").convert_alpha()
-        self.Background =       pg.image.load(f"{root}Background.png").convert_alpha()
+        self.Background =       pg.image.load(f"{root}Background.png").convert()
 
         root = "Resources/Sprites/Objects/Main_Menu_texts/"
         self.CursorPic =        pg.image.load(f"{root}Cursor.png").convert_alpha()
         self.CreditsPic =       pg.image.load(f"{root}CREDITS.png").convert_alpha()
         self.NewGamePic =       pg.image.load(f"{root}NEW_GAME.png").convert_alpha()
         self.SettingsPic =      pg.image.load(f"{root}SETTINGS.png").convert_alpha()
+        self.ExitPic =          pg.image.load(f"{root}EXIT.png").convert_alpha()
 
 
     def main(self):
-        cursorPos_y: list[int] = [0,26,52]
+        cursorPos_y: list[int] = [0, 26, 52, 78]      # TODO make it work
         clearScreen: bool = False
 
         while 1:
@@ -51,7 +52,7 @@ class MainMenu:
                     elif event.key == pg.K_d or event.key == pg.K_RETURN or event.key == pg.K_RIGHT:
                         lg.debug("option selected")
                         return self.cursor_execute()
-                    elif event.key == pg.K_h:
+                    elif event.key == pg.K_h and (event.mod & pg.KMOD_CTRL):        # < Bitmask magic
                         clearScreen = not clearScreen
 
             self.draw_bg()
@@ -60,6 +61,7 @@ class MainMenu:
                 self.game_surface.blit(self.CreditsPic,     (0,0))
                 self.game_surface.blit(self.NewGamePic,     (0,0))
                 self.game_surface.blit(self.SettingsPic,    (0,0))
+                self.game_surface.blit(self.ExitPic,        (0,0))
 
             self.update_screen()
 
@@ -86,9 +88,9 @@ class MainMenu:
                 lg.debug("go to MainSt.MENU_SETTINGS")
                 return MainSt.MENU_SETTINGS
             case 2:
-                lg.debug("go to MainSt.MAIN_MENU")
+                lg.debug("go to MainSt.CREDITS")
                 # TODO make a credits screen
-                return MainSt.MAIN_MENU
+                return MainSt.CREDITS
             case 3:
                 lg.debug("go to MainSt.EXIT")
                 return MainSt.EXIT

@@ -6,6 +6,7 @@ class MainSt(Enum):
     MAIN_MENU = 1
     MENU_SETTINGS = 12
     GAME_LOOP = 2
+    CREDITS = 3
     EXIT = 666
 
 

@@ -5,6 +5,8 @@ from Modules.Buttons.Button import Button
 import logging as lg
 from icecream import ic
 
+from Modules.Text.Bitmap import BitmapFont
+
 
 
 class MainScreen:
