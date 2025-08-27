@@ -28,7 +28,7 @@ class MainSettings:
         self.placeholder = pg.image.load(f"{root}Aseprite_mini_fontmap.png").convert_alpha()
 
 #        root = "Resources/Sprites/Objects/Main_Settings/"
-#        self.placeholder =      pg.image.load(f"{root}Menu_Settings_Placeholder.png").convert_alpha()
+#        self.placeholder =      pg.raw_image.load(f"{root}Menu_Settings_Placeholder.png").convert_alpha()
 
 
     def main(self):

@@ -88,7 +88,6 @@ class MainScreen:
 
     @staticmethod
     def key_handler(event: pg.event) -> GameSt | None:
-        ic()
          # noinspection PyUnreachableCode
         match event.key:
             case pg.K_q | pg.K_ESCAPE:

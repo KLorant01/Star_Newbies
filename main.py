@@ -7,6 +7,9 @@ import pygame as pg
 import logging as lg
 
 
+from Modules.Text.Bitmap import BitmapFont, fontData
+
+
 class Main:
     def __init__(self):
         pg.init()
@@ -61,4 +64,9 @@ if __name__ == '__main__':
                         format="%(asctime)s\t%(levelname)s\t%(filename)s\t%(funcName)s\t%(lineno)d\t%(message)s", )
 
     game = Main()
+
+    # alma = BitmapFont(fontData)
+
     game.main()
+
+
