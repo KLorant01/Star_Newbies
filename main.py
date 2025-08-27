@@ -3,11 +3,9 @@ from Game.Main_Menu import MainMenu
 from Game.Main_Settings import MainSettings
 from Game.Game_Loop import GameLoop
 from Resources.Data.Enums import MainSt
+from Modules.Text.Bitmap import create_fonts
 import pygame as pg
 import logging as lg
-
-
-from Modules.Text.Bitmap import BitmapFont, fontData
 
 
 class Main:
@@ -20,6 +18,10 @@ class Main:
         self.screenWidth, self.screenHeight = videoInfo.current_w, videoInfo.current_h
         self.screen = pg.display.set_mode((self.screenWidth, self.screenHeight), pg.FULLSCREEN)
 #        self.screen = pg.display.set_mode((self.screenWidth, self.screenHeight))
+
+        # Generate the fonts
+        create_fonts()
+
 
         self.game_surface = pg.Surface(SCREEN_RES)      # < this is the "game surface" where everything is rendered pixel-perfect
         self.clock = pg.time.Clock()                    # < Init system clock
@@ -63,10 +65,6 @@ if __name__ == '__main__':
     lg.basicConfig(level=lg.INFO, filename=".log.log", filemode="w",
                         format="%(asctime)s\t%(levelname)s\t%(filename)s\t%(funcName)s\t%(lineno)d\t%(message)s", )
 
-    game = Main()
-
-    # alma = BitmapFont(fontData)
-
-    game.main()
+    Main().main()
 
 

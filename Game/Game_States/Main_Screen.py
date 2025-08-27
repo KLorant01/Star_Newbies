@@ -5,7 +5,7 @@ from Modules.Buttons.Button import Button
 import logging as lg
 from icecream import ic
 
-from Modules.Text.Bitmap import BitmapFont
+from Modules.Text.Dialog import DialogWindow
 
 
 
@@ -55,6 +55,9 @@ class MainScreen:
         self.default_bg = pg.image.load("Resources/Sprites/Game/Test/Game_layout_test.png").convert_alpha()
 
     def main(self):
+
+        dialog = DialogWindow(["Hello World!"], "Hello Word")
+
         while 1:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
@@ -75,6 +78,7 @@ class MainScreen:
 
             self.darw_bg()
             self.game_surface.blit(self.default_bg, (0, 0))
+            dialog.draw_dialog(self.game_surface, (40,40))
 
             self.update_screen()
 
@@ -85,6 +89,7 @@ class MainScreen:
         for button in self.buttons:
             if button.action(cursorPosX, cursorPosY, push):
                 break
+
 
     @staticmethod
     def key_handler(event: pg.event) -> GameSt | None:

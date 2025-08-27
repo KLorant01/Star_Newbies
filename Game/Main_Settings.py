@@ -24,11 +24,8 @@ class MainSettings:
         self.Bolygok_2 =        pg.image.load(f"{root}Bolygók_2.png").convert_alpha()
         self.Background =       pg.image.load(f"{root}Background.png").convert_alpha()
 
-        root = "/home/lorant/PycharmProjects/Star_Newbies/Resources/Sprites/Objects/Text/Text_1/"
-        self.placeholder = pg.image.load(f"{root}Aseprite_mini_fontmap.png").convert_alpha()
-
-#        root = "Resources/Sprites/Objects/Main_Settings/"
-#        self.placeholder =      pg.raw_image.load(f"{root}Menu_Settings_Placeholder.png").convert_alpha()
+        root = "Resources/Sprites/Objects/Main_Settings/"
+        self.placeholder =      pg.image.load(f"{root}Menu_Settings_Placeholder.png").convert_alpha()
 
 
     def main(self):
