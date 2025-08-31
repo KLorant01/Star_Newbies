@@ -10,3 +10,5 @@ VELOCITYS: list[float] = [
     0.15,
     0.0,
 ]
+
+shared_bgPositions: list[float] = [0, 0, 0, 0, 0, 0]

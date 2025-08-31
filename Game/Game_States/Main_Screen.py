@@ -1,12 +1,10 @@
 import pygame as pg
-from Resources.Data.VARIABLES import FPS, VELOCITYS
+from Resources.Data.VARIABLES import FPS, VELOCITYS, shared_bgPositions
 from Resources.Data.Enums import MainSt, GameSt
 from Modules.Buttons.Button import Button
+from Modules.Text.Dialog import DialogManager
 import logging as lg
 from icecream import ic
-
-from Modules.Text.Dialog import DialogWindow
-
 
 
 class MainScreen:
@@ -21,7 +19,7 @@ class MainScreen:
         self.game_state = GameSt.MAIN_SCREEN
 
         # MOVING BACKGROUND
-        self.bgPositions: list[float] = [0,0,0,0,0,0]
+        self.bgPositions: list[float] = shared_bgPositions
 
         self.buttons = [
             Button("Star_System", 7, 622, 5, 64),
@@ -56,7 +54,7 @@ class MainScreen:
 
     def main(self):
 
-        dialog = DialogWindow(["Hello World!"], "Hello Word")
+        dialog = DialogManager(["ABCDEFGHKPRSTXYZabcdeghknopqrsuxyz023456789+/#= 'MWmvNOQUV4?JLFjt1-Iil.,!"], "tets")
 
         while 1:
             for event in pg.event.get():

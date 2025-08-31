@@ -10,6 +10,7 @@ def block(func):
 
 
 class Gyumolcs:
+    number: int
     def __init__(self, alma, banan):
         self.alma = alma
         self.banan = banan

@@ -1,5 +1,5 @@
 import pygame as pg
-from Resources.Data.VARIABLES import FPS, VELOCITYS
+from Resources.Data.VARIABLES import FPS, VELOCITYS, shared_bgPositions
 from Resources.Data.Enums import MainSt
 import logging as lg
 
@@ -16,8 +16,8 @@ class MainMenu:
         self.CURSOR_MAX: int = 3    # New Game, Settings, Credits, EXIT
 
         # MOVING BACKGROUND
-        self.bgPositions: list[float] = [0,0,0,0,0,0]
-        
+        self.bgPositions: list[float] = shared_bgPositions
+
         # LOAD Resources
         root: str = "Resources/Sprites/Bgs/Space_bg/"
         self.Csillagok_1 =      pg.image.load(f"{root}Csillagok_1.png").convert_alpha()

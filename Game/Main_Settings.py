@@ -1,18 +1,19 @@
 import pygame as pg
-from Resources.Data.VARIABLES import FPS, VELOCITYS
+from Resources.Data.VARIABLES import FPS, VELOCITYS, shared_bgPositions
 from Resources.Data.Enums import MainSt
+from Modules.Text.Dialog import DialogManager
 # import logging as lg
 
 
 class MainSettings:
-    def __init__(self, game_surface, screen, clock, screenwidth, screenheight):
+    def __init__(self, game_surface, screen, clock, screenwidth, screenheight ):
         self.game_surface = game_surface
         self.screenWidth = screenwidth
         self.screenHeight = screenheight
         self.screen = screen
         self.clock = clock
 
-        self.bgPositions: list[float] = [0,0,0,0,0,0]               # MOVING BACKGROUND
+        self.bgPositions: list[float] = shared_bgPositions
 
         # LOAD Resources
         root: str = "Resources/Sprites/Bgs/Space_bg/"
@@ -29,8 +30,10 @@ class MainSettings:
 
 
     def main(self):
-        while 1:
 
+        dialog = DialogManager(["ABCDEFGHKPRSTXYZabcdeghknopqrsuxyz02356789+/# 'NOQUV4?MWmvJLFjt1-=Iil.,!"], "tets")
+
+        while 1:
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     return MainSt.EXIT
@@ -40,6 +43,7 @@ class MainSettings:
                         return MainSt.MAIN_MENU
 
             self.draw_bg()
+
             self.game_surface.blit(self.placeholder,    (0, 0))
 
             self.update_screen()
