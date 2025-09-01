@@ -1,5 +1,5 @@
 import pygame as pg
-from Modules.Text.Fonts import *
+from Resources.Data.Fonts import *
 import logging as lg
 
 

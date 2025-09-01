@@ -17,11 +17,8 @@ class Main:
         videoInfo = pg.display.Info()
         self.screenWidth, self.screenHeight = videoInfo.current_w, videoInfo.current_h
         self.screen = pg.display.set_mode((self.screenWidth, self.screenHeight), pg.FULLSCREEN)
-#        self.screen = pg.display.set_mode((self.screenWidth, self.screenHeight))
 
-        # Generate the fonts
         create_fonts()
-
 
         self.game_surface = pg.Surface(SCREEN_RES)      # < this is the "game surface" where everything is rendered pixel-perfect
         self.clock = pg.time.Clock()                    # < Init system clock

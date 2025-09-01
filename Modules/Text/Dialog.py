@@ -1,5 +1,4 @@
 from Modules.Text.Bitmap import fonts
-from icecream import ic
 import logging as lg
 
 

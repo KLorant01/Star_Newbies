@@ -1,32 +1,19 @@
-import time
-import dataclasses
+from Modules.Events.Events import Event, new_event
 
 
-def block(func):
-    def wrap():
-        print(f"function {func.__name__} is blocked")
-    return wrap
+game_data: dict = {
+    "events" : [],
+    "crew" : [],
+}
 
 
+event = new_event(game_data)
+game_data["events"].append(event.name)
 
-class Gyumolcs:
-    number: int
-    def __init__(self, alma, banan):
-        self.alma = alma
-        self.banan = banan
-        Gyumolcs.number += 1
+print(game_data)
 
-
-    def increase_alma(self):
-        self.alma += 1
-
-    @staticmethod
-    def number_of_gyumolcs():
-        Gyumolcs.number += 1
-
-@block
-def printalma():
-    print("alma")
+event = new_event(game_data)
+game_data["events"].append(event.name)
 
 
-printalma()
+print(game_data)
