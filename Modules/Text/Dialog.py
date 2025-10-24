@@ -9,8 +9,6 @@ class DialogManager:
         self.fontName = font
         self.dialogProgressCounter: int = 0
 
-        lg.info("Make new dialog")
-
         for ft in fonts:
             if ft.fontName == self.fontName:
                 self.font = ft
@@ -19,14 +17,18 @@ class DialogManager:
             raise Exception("Searched font not found")
 
         # noinspection PyUnreachableCode
-        lg.info(f"New dialog {self.dialogName} is created")
+        lg.debug(f"New dialog {self.dialogName} is created")
 
-    def draw_dialog(self, surface, pos: tuple[int, int]):
+
+    def draw_dialog(self, surface, pos: tuple[int, int], window: tuple[int, int]=(320,180)):
+
         if self.dialogProgressCounter < len(self.text):
             act_text = self.text[self.dialogProgressCounter]
-            self.font.render(surface, act_text, pos)
+            lg.debug(f"{self.dialogProgressCounter}\t{act_text}")
+            self.font.render(surface, act_text, pos, window)
         else:
             return
+
 
     def trow_dialog(self, game_progress: list):
         ...

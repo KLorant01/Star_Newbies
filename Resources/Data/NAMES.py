@@ -1,3 +1,7 @@
+# NOT SECURE CODE !!!
+# IF PROBS ARE THE SAME, THE SYSTEM BROKE
+
+
 NAMES: dict[str: dict[str : dict[ int: list[str]]]] = {
     "Human":
         {

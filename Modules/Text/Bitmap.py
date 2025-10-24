@@ -8,7 +8,8 @@ fonts: list = []
 
 def create_fonts():
     global fonts
-    fonts.append(BitmapFont(fontRegData, "font_regular"))
+    a = BitmapFont(fontRegData, "font_regular")
+    fonts.append(a)
     lg.info(f"Fonts: {fonts}")
 
 
@@ -19,15 +20,15 @@ class BitmapFont:
         self.charMap = font_data["charMap"]
 
         self.char_width_px = font_data["widthNumbers"]
-        self.char_width_gap_px = font_data["withGaps"]
+        self.char_width_gap_px = int(font_data["withGaps"])
         self.char_height_px = font_data["heightNumbers"]
-        self.char_height_gap_px = font_data["heightGaps"]
+        self.char_height_gap_px = int(font_data["heightGaps"])
 
         self.glyphs = {}
 
 
         for i in range(len(self.charMap)):
-            y = i * (int(self.char_height_gap_px) + int(self.char_height_px))
+            y = i * (self.char_height_gap_px + int(self.char_height_px))
 
             ch_p: int = 0
             act_char_width_px: int = int(self.char_width_px[i])
@@ -35,23 +36,49 @@ class BitmapFont:
             max_len = len(act_line)
 
             while ch_p < max_len:
-                x = ch_p * (act_char_width_px + int(self.char_width_gap_px))
+                x = ch_p * (act_char_width_px + self.char_width_gap_px)
                 rect = (x, y, act_char_width_px, int(self.char_height_px))
                 self.glyphs.update({act_line[ch_p] : [self.raw_image.subsurface(rect), act_char_width_px]})
 
                 ch_p += 1
 
-            lg.info(f"New font {self.fontName} is created.")
+        lg.info(f"New font [{self.fontName}] is created.")
 
 
-# TODO add tördelés !!!
-    def render(self, surface, text: str, pos: tuple):
+    def render(self, surface, text: str, pos: tuple[int, int], window: tuple[int, int]):
         x, y = pos
-        for char in text:
-            if char in self.glyphs:
-                act_glyphs = self.glyphs[char]
-                surface.blit(act_glyphs[0], (x, y))
-            else:
-                raise SyntaxError(f"Unknown character detected in {text}")
+        window_x, window_y = window
+        words: list[str] = []
+        word: str = ""
 
-            x += act_glyphs[1]
+        for ch in text:     # Parce the text to words
+            word += ch
+            if ch == " ":
+                words.append(word)
+                word = ""
+        words.append(word)
+
+        for word in words:
+            wordLenght: int = 0
+            for ch in word:
+                if ch in self.glyphs:
+                    act_glyphs = self.glyphs[ch]
+                else: raise SyntaxError(f"Unknown character detected in {text}")
+                wordLenght += act_glyphs[1]
+
+            # IF WORD BIG, MAKE IT NEW LINE UGA BUGA!
+            if wordLenght > window_x:
+                raise Exception("WTF IS THIS MONSTROSITY OF A WORD BRO?!")
+            elif x + wordLenght > window_x:
+                y += self.char_height_gap_px + int(self.char_height_px)
+                x = pos[0]
+            if y > window_y:
+                raise Exception("Text to BIG! \n DOES NOT FIT IN THE FUCK'IN WINDOW!!!")
+
+            for ch in word:     # < draw the word into it's place
+                if ch in self.glyphs:
+                    act_glyphs = self.glyphs[ch]
+                    surface.blit(act_glyphs[0], (x, y))
+                else: raise SyntaxError(f"Unknown character detected in {text}")
+                x += act_glyphs[1]
+

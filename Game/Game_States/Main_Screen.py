@@ -9,7 +9,7 @@ from icecream import ic
 
 class MainScreen:
     def __init__(self, game_surface, screen, clock, screenwidth, screenheight):
-        lg.info("init")
+        lg.debug("init")
         self.game_surface = game_surface
         self.screenWidth = screenwidth
         self.screenHeight = screenheight
@@ -53,7 +53,6 @@ class MainScreen:
         self.default_bg = pg.image.load("Resources/Sprites/Game/Test/Game_layout_test.png").convert_alpha()
 
     def main(self):
-
         dialog = DialogManager(["ABCDEFGHKPRSTXYZabcdeghknopqrsuxyz023456789+/#= 'MWmvNOQUV4?JLFjt1-Iil.,!"], "tets")
 
         while 1:
@@ -94,7 +93,6 @@ class MainScreen:
          # noinspection PyUnreachableCode
         match event.key:
             case pg.K_q | pg.K_ESCAPE:
-                ic()
                 return GameSt.SETTINGS
             case pg.K_c | pg.K_i:
                 return GameSt.INVENTORY

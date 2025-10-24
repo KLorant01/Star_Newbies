@@ -8,7 +8,7 @@ class Button:
         self.y_min = y_min
         self.y_max = y_max
 
-        lg.info(f"Button: {self.name} created")
+        lg.debug(f"Button: {self.name} created")
 
         self.hover: bool = False
 
@@ -33,4 +33,4 @@ class Button:
 
 
     def action_on_push(self):
-        lg.info(f"Button: {self.name} pressed")
+        lg.debug(f"Button: {self.name} pressed")

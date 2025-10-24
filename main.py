@@ -1,18 +1,19 @@
-from Resources.Data.VARIABLES import SCREEN_RES
+from Modules.Text.Bitmap import create_fonts
+from Resources.Data.VARIABLES import SCREEN_RES, LOG_DIRECTORY, SAVING_FILE, GAME_IN_PROGRESS_SWITCH, AUTOSAVE
 from Game.Main_Menu import MainMenu
 from Game.Main_Settings import MainSettings
 from Game.Game_Loop import GameLoop
 from Resources.Data.Enums import MainSt
-from Modules.Text.Bitmap import create_fonts
 import pygame as pg
 import logging as lg
+
 
 
 class Main:
     def __init__(self):
         pg.init()
 
-        lg.info("pygame init")
+        lg.debug("pygame init")
 
         videoInfo = pg.display.Info()
         self.screenWidth, self.screenHeight = videoInfo.current_w, videoInfo.current_h
@@ -23,6 +24,12 @@ class Main:
         self.game_surface = pg.Surface(SCREEN_RES)      # < this is the "game surface" where everything is rendered pixel-perfect
         self.clock = pg.time.Clock()                    # < Init system clock
 
+        # Make save file if it does not exist
+        if AUTOSAVE:
+            lg.debug("Save files created")
+            with open(SAVING_FILE, "a"):                pass
+            with open(GAME_IN_PROGRESS_SWITCH, "a"):    pass
+
 
     def main(self):
         running: bool = True
@@ -31,36 +38,35 @@ class Main:
         while running:
             match state:
                 case MainSt.MAIN_MENU:
-                    lg.info("MAIN_MENU")
+                    lg.debug("MAIN_MENU")
                     state = MainMenu(self.game_surface, self.screen, self.clock, self.screenWidth,
                                      self.screenHeight).main()
 
                 case MainSt.MENU_SETTINGS:
-                    lg.info("MENU_SETTINGS")
+                    lg.debug("MENU_SETTINGS")
                     state = MainSettings(self.game_surface, self.screen, self.clock, self.screenWidth,
                                          self.screenHeight).main()
 
                 case MainSt.GAME_LOOP:
-                    lg.info("GAME_LOOP")
+                    lg.debug("GAME_LOOP")
                     state = GameLoop(self.game_surface, self.screen, self.clock, self.screenWidth,
                                      self.screenHeight).loop()
 
                 case MainSt.CREDITS:
-                    lg.info("CREDITS")
+                    lg.debug("CREDITS")
                     raise NotImplementedError("Function Credits is not implemented yet")
 
                 case MainSt.EXIT:
-                    lg.info("EXIT")
+                    lg.debug("EXIT")
                     running = False
                     pg.display.quit()
                     pg.quit()
 
 
 if __name__ == '__main__':
-
     # noinspection SpellCheckingInspection
-    lg.basicConfig(level=lg.INFO, filename=".log.log", filemode="w",
-                        format="%(asctime)s\t%(levelname)s\t%(filename)s\t%(funcName)s\t%(lineno)d\t%(message)s", )
+    lg.basicConfig(level=lg.DEBUG, filename=f"{LOG_DIRECTORY}latest.log", filemode="w",
+                   format="%(asctime)s\t%(levelname)s\t%(filename)s\t%(funcName)s\t%(lineno)d\t%(message)s", )
 
     Main().main()
 

@@ -16,10 +16,17 @@ class GameSt(Enum):
     SHIP = 1            # SHADE TOWARDS
     INVENTORY = 2       # SHADE LEFT
     CHARACTERS = 3      # SHADE RIGHT
-    MAP = 4             # SHADE INWARDS
     SETTINGS = 5        # SHADE INWARDS
     DATABASE = 6       # SHADE DOWN
-    PROCESSES = 7       # SHADE UP       <<< lehet character menüpont alá kéne tenni
+    MISSIONS = 7       # SHADE UP       <<< lehet character menüpont alá kéne tenni
 
     FIGHT = 444         # SHADE TOWARDS
 
+class Values(Enum):
+    ITEM = 0
+    WEAPON = 1
+    ARMOR = 2
+    GADGET = 3
+    FOOD = 4
+    TRINKET = 5
+    PART = 6
