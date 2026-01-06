@@ -46,6 +46,14 @@ class BitmapFont:
 
 
     def render(self, surface, text: str, pos: tuple[int, int], window: tuple[int, int]):
+        """
+        :param surface: There will be the text
+        :param text: Don't be stupid
+        :param pos: the upper LEFT corner of the text
+        :param window: the lower RIGHT corner of the text
+        :return: Nothing. It just works LoL
+        """
+
         x, y = pos
         window_x, window_y = window
         words: list[str] = []

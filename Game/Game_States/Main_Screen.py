@@ -22,20 +22,20 @@ class MainScreen:
         self.bgPositions: list[float] = shared_bgPositions
 
         self.buttons = [
-            Button("Star_System", 7, 622, 5, 64),
-            Button("Time", 7, 263, 78, 135),
-            Button("Mission_State", 7, 950, 150, 253),
+            Button("Star_System", 7, 622, 5, 64, "Star System", 1),
+            Button("Time", 7, 263, 78, 135, "Time", 1),
+            Button("Mission_State", 7, 950, 150, 253, "Mission State", 1),
 
-            Button("Character_1", 7, 130, 282, 402),
-            Button("Character_2", 7, 130, 412, 536),
-            Button("Character_3", 7, 130, 546, 666),
-            Button("Character_4", 7, 130, 676, 801),
+            Button("Character_1", 7, 130, 282, 402, "Character 1", 1),
+            Button("Character_2", 7, 130, 412, 536, "Character 2", 1),
+            Button("Character_3", 7, 130, 546, 666, "Character 3", 1),
+            Button("Character_4", 7, 130, 676, 801, "Character 4", 1),
 
-            Button("Cargo", 280, 830, 0, 1022),
-            Button("Database", 7, 275, 0, 930),
-            Button("Settings", 1850, 1910, 11, 72),
+            Button("Cargo", 280, 830, 0, 1022, "Cargo", 1),
+            Button("Database", 7, 275, 0, 930, "Database", 1),
+            Button("Settings", 1850, 1910, 11, 72, "Settings", 1),
 
-            Button("Ship in the Middle", 865, 1440, 105, 930),
+            Button("Ship in the Middle", 865, 1440, 105, 930, "Ship", 1),
         ]
 
         # LOAD Resources
@@ -53,7 +53,7 @@ class MainScreen:
         self.default_bg = pg.image.load("Resources/Sprites/Game/Test/Game_layout_test.png").convert_alpha()
 
     def main(self):
-        dialog = DialogManager(["ABCDEFGHKPRSTXYZabcdeghknopqrsuxyz023456789+/#= 'MWmvNOQUV4?JLFjt1-Iil.,!"], "tets")
+#        dialog = DialogManager(["ABCDEFGHKPRSTXYZabcdeghknopqrsuxyz023456789+/#= 'MWmvNOQUV4?JLFjt1-Iil.,!"], "tets")
 
         while 1:
             for event in pg.event.get():
@@ -75,7 +75,8 @@ class MainScreen:
 
             self.darw_bg()
             self.game_surface.blit(self.default_bg, (0, 0))
-            dialog.draw_dialog(self.game_surface, (40,40))
+            self.draw_Buttons()
+#            dialog.draw_dialog(self.game_surface, (40,40))
 
             self.update_screen()
 
@@ -128,6 +129,11 @@ class MainScreen:
             self.bgPositions[i] -= VELOCITYS[i]
             if self.bgPositions[i] < -MAX_DIFF:
                 self.bgPositions[i] = 0
+
+
+    def draw_Buttons(self):
+        for button in self.buttons:
+            self.game_surface.blit(button.draw(),   (button.x_min, button.y_min))
 
 
     def update_screen(self):

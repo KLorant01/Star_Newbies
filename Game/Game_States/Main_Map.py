@@ -17,7 +17,6 @@ class Map:
     def move(self):
         self.past_positions.append(self.act_position)
         self.change_level()
-        self.act_position: str = "Eart"
         self.act_position = self.chose_place_by_level(self.act_level)
 
 
@@ -36,10 +35,16 @@ class Map:
 
 
     def chose_place_by_level(self, level) -> str:
+        print("---------------")
         chosen = self.act_position
+        print(self.act_position)
         chose_list: list = [map_name for map_name in MAP if MAP[map_name]["level"] == level]
+        print(chose_list)
         while chosen == self.act_position:
             chosen = choice(chose_list)
+            print(chosen)
+
+        print("\n")
         return chosen
 
 
@@ -61,10 +66,34 @@ MAP = {
         "bg_speed": []
     },
 
+    "System 0-1-0": {
+        "level": 1,
+        "size": 18,
+        "distance_ly": 2,
+        "bgs": [],
+        "bg_speed": []
+    },
+
+    "System 7-70-7": {
+        "level": 2,
+        "size": 13,
+        "distance_ly": 9,
+        "bgs": [],
+        "bg_speed": []
+    },
+
     "Lil Dwarf System": {
         "level": 2,
         "size": 15,
         "distance_ly": 7,
+        "bgs": [],
+        "bg_speed": []
+    },
+
+    "Cow system": {
+        "level": 3,
+        "size": 37,
+        "distance_ly": 19,
         "bgs": [],
         "bg_speed": []
     },
@@ -77,11 +106,16 @@ MAP = {
         "bg_speed": []
     },
 
+    "Crab_System": {
+        "level": 4,
+    },
+
+
 }
 
 if __name__ == '__main__':
     alma = Map()
-    print(alma)
     for _ in range(5):
         alma.move()
-        print(alma)
+
+    print(alma.past_positions)
